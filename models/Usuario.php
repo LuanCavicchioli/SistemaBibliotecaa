@@ -18,12 +18,21 @@ class Usuario
      */
     public function buscar($id)
     {
+
     }
     /**
      * Listar todos os registros da tabela usuario
      */
     public function listar()
     {
+        try{
+            
+            $sql = "SELECT FROM {$this->table}";
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+        }catch(PDOException $e){
+            echo "Erro Na Listagem:" .$e->getMessage();
+        }
     }
     /** 
      *Cadastrar Usuario
@@ -82,6 +91,11 @@ class Usuario
     {
         try {
             $sql = "DELETE FROM usuarios WHERE id=:id";
+            $stmt= $this->db->prepare($sql);
+
+            $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+            $stmt->execute();
+            
         } catch (PDOException $e) {
             echo "Erro na hora de deletar:" . $e->getMessage();
         }
