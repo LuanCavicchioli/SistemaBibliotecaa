@@ -1,4 +1,5 @@
 <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DBConexao.php";
 class Livro
 {
     protected $db;
@@ -32,12 +33,13 @@ class Livro
     public function listar()
     {
         try {
+
             $sql = "SELECT * FROM {$this->table}";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_OBJ);
+            $stmt = $this->db->query($sql);
+            return $stmt->fetchALL(PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             echo "Erro Na Listagem:" . $e->getMessage();
+            return null;
         }
     }
     /**
@@ -63,17 +65,7 @@ class Livro
     }
     public function editar($id, $dados)
     {
-        try{
-            $sql = "UPDATE {$this->db} SET titulo=:titulo,autor=:autor,numero_pagina=:numero_pagina,preco=:preco,ano_publicacao=:ano_publicacao,isbn=:isbn WHERE id_livro = :id";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindParam(':titulo',$dados['titulo']);
-            $stmt->execute();
-            return true;
 
-        }catch(PDOException $e){
-            echo "Erro Ao Editar:". $e->getMessage();
-            return false;
-        }
     }
     public function excluir($id)
     {

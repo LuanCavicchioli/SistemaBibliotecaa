@@ -15,7 +15,7 @@
 
     </style>
 </head>
-
+        
 <body class="d-flex flex-column min-vh-100">
     <header>
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
@@ -28,9 +28,9 @@
                     <div class="navbar-nav">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                         <a class="nav-link" href="#">Emprestimos</a>
-                        <a class="nav-link" href="#">Livro</a>
-                        <a class="nav-link" href="#">Aluno</a>
-                        <a class="nav-link" href="#">Usuario</a>
+                        <a class="nav-link" href="/admin/livros/">Livro</a>
+                        <a class="nav-link" href="/admin/alunos/">Aluno</a>
+                        <a class="nav-link" href="/admin//usuarios/">Usuario</a>
                     </div>
                 </div>
             </div>

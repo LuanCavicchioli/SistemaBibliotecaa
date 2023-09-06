@@ -1,5 +1,5 @@
 <?php
-
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DBConexao.php";
 class Aluno{
     protected $db;
     protected $table = "alunos";
@@ -11,22 +11,35 @@ class Aluno{
     /**
      * busca registro aluno
      * @param int $id
-     * @return Aluno
+     * @return Aluno|null
      */
-    public function buscar($id){
-
+    public function buscar($id)
+    {
+        try {
+            $sql = ("SELECT * FROM {$this->table} WHERE id_aluno = :id");
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            echo "Erro ao buscar!" . $e->getMessage();
+            return null;
+        }
     }
+    
     /**
      * Listar Registros Da Tabela
      */
     public function listar()
     {
-        try{
+        try {
+
             $sql = "SELECT * FROM {$this->table}";
-            $stmt = $this->db->prepare($sql);
-            $stmt->execute();
-        }catch(PDOException $e){
-            echo "Erro Na Listagem:". $e->getMessage();
+            $stmt = $this->db->query($sql);
+            return $stmt->fetchALL(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            echo "Erro Na Listagem:" . $e->getMessage();
+            return null;
         }
     }
     /**
@@ -34,50 +47,40 @@ class Aluno{
      */
     public function cadastrar($dados)
     {
-        try{
-            $sql = "INSERT INTO {$this->table}{nome,
-            cpf,email,telefone,celular,data_nascimento}
-            VALUES(:nome,:cpf,:email,:telefone,
-            :celular,:data_nascimento)";
-            $stmt=$this->db->prepare($sql);
-        }catch(PDOException $e){
-            echo "Erro na preparação:". $e->getMessage();
-        }
-        $stmt->bindParam(':nome',$dados['nome']);
-        $stmt->bindParam(':cpf',$dados['cpf']);
-        $stmt->bindParam(':email', $dados['email']);
-        $stmt->bindParam(':telefone',$dados['telefone']);
-        $stmt->bindParam(':celular', $dados['celular']);
-        $stmt->bindParam(':data_nascimento', $dados['data_nascimento']);
+        try {
+            $sql = "INSERT INTO {$this->table} {nome,cpf,email,telefone,celular,data_nascimento}
+            VALUES(:nome,:cpf, :email,:telefone,:celular,:data_nascimento)";
+            $stmt = $this->db->prepare($sql);
 
-        try{
+            $stmt->bindParam(':nome', $dados['nome']);
+            $stmt->bindParam(':cpf', $dados['cpf']);
+            $stmt->bindParam(':email', $dados['email']);
+            $stmt->bindParam(':telefone', $dados['telefone']);
+            $stmt->bindParam(':celular', $dados['celular']);
+            $stmt->bindParam(':data_nascimento', $dados['data_nascimento']);
             $stmt->execute();
-            echo "Inserção bem-sucedida!";
-        }catch(PDOException $e){
-            echo "Erro na inserção:". $e->getMessage();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erro Ao Cadastrar:" . $e->getMessage();
+            return false;
         }
     }
     public function editar($id,$dados)
     {
-        try{
-            $sql = "UPDATE alunos SET nome=:nome,
-            cpf=:cpf,email=:email,telefone=:telefone,
-            celulara=:celular,data_nascimento=:data_nascimento WHERE id_aluno = :id";
+        try {
+            $sql = "UPDATE {$this->table} SET nome=:nome,cpf=:cpf, email=:email,telefone=:telefone, celularl=:celular,
+            data_nascimento=:data_nascimento WHERE id_usuario = :id";
             $stmt = $this->db->prepare($sql);
-        }catch(PDOException $e){
-            echo "Erro na preparação da consulta". $e->getMessage();
-        }
-        $stmt->bindParam(':nome',$dados['nome']);
-        $stmt->bindParam(':cpf',$dados['cpf']);
-        $stmt->bindParam(':email', $dados['email']);
-        $stmt->bindParam(':telefone',$dados['telefone']);
-        $stmt->bindParam(':celular', $dados['celular']);
-        $stmt->bindParam(':data_nascimento', $dados['data_nascimento']);
-        try{
+            $stmt->bindParam(':nome', $dados['nome']);
+            $stmt->bindParam(':email', $dados['email']);
+            $stmt->bindParam(':senha', $dados['senha']);
+            $stmt->bindParam(':perfil', $dados['perfil']);
+            $stmt->bindParam(':id',$id, PDO::PARAM_INT);
             $stmt->execute();
-            echo "Seus Dados Foram Atualizados Com Sucesso!";
-        }catch(PDOException $e){
-            echo "Erro na inserção" . $e->getMessage();
+            return true;
+        } catch (PDOException $e) {
+            echo "Erro Ao Editar:" . $e->getMessage();
+            return false;
         }
     }
     public function excluir($id){
