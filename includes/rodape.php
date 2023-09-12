@@ -1,5 +1,5 @@
 <footer class="bg-secondary text-white text-center p-2 mt-auto">
-        Copyright BuscaTec &copy; <?=date("Y") ?>- Todos os direitos sao reservados
+        Copyright &copy; <?=date("Y") ?>- Todos os direitos sao reservados
     </footer>
 
 

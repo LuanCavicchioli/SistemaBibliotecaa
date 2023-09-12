@@ -1,6 +1,7 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DBConexao.php";
 
+require_once $_SERVER['DOCUMENT_ROOT'] . "/database/DBConexao.php";
+session_start();
 class Usuario
 {
 
@@ -54,8 +55,8 @@ class Usuario
     public function cadastrar($dados)
     {
         try {
-            $sql = "INSERT INTO {$this->table} {nome,email,senha,perfil}
-            VALUES(:nome, :email,:senha,:perfil)";
+            $sql = "INSERT INTO {$this->table} (nome,email,senha,perfil)
+            VALUES(:nome,:email,:senha,:perfil)";
             $stmt = $this->db->prepare($sql);
 
             $stmt->bindParam(':nome', $dados['nome']);
@@ -63,9 +64,11 @@ class Usuario
             $stmt->bindParam(':senha', $dados['senha']);
             $stmt->bindParam(':perfil', $dados['perfil']);
             $stmt->execute();
+            $_SESSION['sucesso'] = "Cadastro relizado";
             return true;
         } catch (PDOException $e) {
             echo "Erro Ao Cadastrar:" . $e->getMessage();
+            $_SESSION['erro'] = "Erro ao cadastrar usuario";
             return false;
         }
     }
@@ -84,7 +87,7 @@ class Usuario
             $stmt->bindParam(':email', $dados['email']);
             $stmt->bindParam(':senha', $dados['senha']);
             $stmt->bindParam(':perfil', $dados['perfil']);
-            $stmt->bindParam(':id',$id, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
