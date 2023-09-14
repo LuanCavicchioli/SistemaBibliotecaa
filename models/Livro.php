@@ -48,7 +48,7 @@ class Livro
     public function cadastrar($dados)
     {
         try {
-            $sql = "INSERT INTO {$this->table}{titulo,autor,numero_pagina,preco,ano_publicacao,isbn}VALUES(:titulo,:autor,:numero_pagina,:preco,:ano_publicacao,:isbn)";
+            $sql = "INSERT INTO {$this->table}(titulo,autor,numero_pagina,preco,ano_publicacao,isbn)VALUES(:titulo,:autor,:numero_pagina,:preco,:ano_publicacao,:isbn)";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':titulo', $dados['titulo']);
             $stmt->bindParam(':autor', $dados['autor']);
@@ -57,9 +57,11 @@ class Livro
             $stmt->bindParam(':ano_publicacao', $dados['ano_publicacao']);
             $stmt->bindParam(':isbn', $dados['isbn']);
             $stmt->execute();
+            $_SESSION['sucesso'] = "Cadastro realizado";
             return true;
         } catch (PDOException $e) {
             echo "Erro na inserção" . $e->getMessage();
+            $_SESSION['erro'] = "Erro ao cadastrar";
             return false;
         }
     }

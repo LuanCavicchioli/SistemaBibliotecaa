@@ -5,6 +5,9 @@
 ?>
 <main class="container mt-3 mb-3">
     <h1>Lista De Livros</h1>
+    <a href="cadastrar.php" class="btn btn-primary float-end">Cadastrar</a>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . "/includes/alerta.php";
+    ?>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -15,6 +18,7 @@
                 <th>Preço</th>
                 <th>A°Publicacao</th>
                 <th>ISBN</th>
+                <th style="width: 200px">Ação</th>
             </tr>
         </thead>
         <tbody>

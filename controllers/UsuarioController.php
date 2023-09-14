@@ -36,23 +36,38 @@ class UsuarioController{
     }
     public function editarUsuario()
     {
-        $id = $_GET['id'];
+        $id_usuario = $_GET['id_usuario'];
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $id_usuario = $_GET['id_usuario'];
+            if(isset($_POST['senha']) && !empty($_POST['senha'])){
+                $senha = password_hash($_POST['senha'],PASSWORD_DEFAULT);
+                //Nova senha
+            }else{
+                //Senha antiga
+                $usuario = $this->usuarioModel->buscar($id_usuario);
+                $senha = $usuario->senha;
+            }
             
             $dados = [
                 'nome'=> $_POST['nome'],
                 'email'=> $_POST['email'],
-                'senha'=>password_hash($_POST['senha'],PASSWORD_DEFAULT),   
+                'senha'=>$senha,  
                 'perfil'=>$_POST['perfil']
             ];
             //var_dump($dados);
 
-            $this->usuarioModel->editar($id,$dados);
+            $this->usuarioModel->editar($id_usuario,$dados);
 
             header('Location: index.php');
             exit;
             
         }
-        return $this->usuarioModel->buscar($id);
+        return $this->usuarioModel->buscar($id_usuario);
+    }
+    public function excluirUsuario(){
+
+        $this->usuarioModel->excluir($_GET['id_usuario']);
+        header('Location: index.php');
+        exit;
     }
 }
