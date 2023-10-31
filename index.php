@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Bibliotecas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
@@ -14,7 +17,7 @@
 
     <header id="cabecalho" class="container">
         <div id="logotipo">
-            <h1> <img src="assets/img/logotipo.png" alt="BookMeNow"></h1>
+            <h1> <img src="assets/img/logotipo.png" alt="BookMeNow" height="30"></h1>
         </div>
         <nav id="menu">
             <ul>
@@ -24,8 +27,8 @@
             </ul>
         </nav>
         <div id="botaoTopo">
-            <a href="">Login</a>
-            <a href="">Registrar</a>
+            <a href="" class="btn-secudario">Login</a>
+            <a href="" class="btn-secudario">Registrar</a>
 
         </div>
     </header>
@@ -114,40 +117,40 @@
             <div class="bloco-rodape">
                 <h2>BookMeNow</h2>
                 <ul>
-                    
-                        <li><a href="#">Sobre Nós</a></li>
-                        <li><a href="#">Tecnologia</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Politica de Privacidade</a></li>
-                    
+
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Tecnologia</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Politica de Privacidade</a></li>
+
                 </ul>
             </div>
 
             <div class="bloco rodape">
                 <h2>Contatos</h2>
                 <ul>
-                    
-                        <li>Paraíba, 125</li>
-                        <li>(14) 99999-9999</li>
-                        <li>contato@bookmenow</li>
-                        
+
+                    <li>Paraíba, 125</li>
+                    <li>(14) 99999-9999</li>
+                    <li>contato@bookmenow</li>
+
                 </ul>
             </div>
 
             <div class="bloco rodape">
                 <h2>Redes Sociais</h2>
                 <ul>
-                    
-                        <li><i class="fa-brands fa-square-facebook"></i></li>
-                        <li><i class="fa-brands fa-instagram"></i></li>
-                    
+
+                    <li><i class="fa-brands fa-square-facebook"></i></li>
+                    <li><i class="fa-brands fa-instagram"></i></li>
+
                 </ul>
             </div>
 
         </div>
 
         <div>
-         &copy; <?=date("Y") ?> -BookMeNow- Todos os direitos sao reservados
+            &copy; <?= date("Y") ?> -BookMeNow- Todos os direitos sao reservados
         </div>
     </footer>
 
