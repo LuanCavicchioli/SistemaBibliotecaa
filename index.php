@@ -15,11 +15,19 @@
 
 <body>
 
+<div class="barra-topo">
+
+
     <header id="cabecalho" class="container">
+
+        <div id="botao-mobile">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
         <div id="logotipo">
             <h1> <img src="assets/img/logotipo.png" alt="BookMeNow" height="30"></h1>
         </div>
-        <nav id="menu">
+        <nav id="menu" >
             <ul>
                 <li><a href="#">Categorias</a></li>
                 <li><a href="#">Sobre nós</a></li>
@@ -32,6 +40,7 @@
 
         </div>
     </header>
+    </div>
 
     <div id="banner">
         <div class="container">
@@ -39,7 +48,7 @@
                 Explorando Mundos Literários
             </h2>
 
-            <p>Descubrar os tesouros de conhecimentos e Imaginação em nossa Biblioteca</p>
+            <p>Descubra os tesouros de conhecimentos e Imaginação em nossa Biblioteca</p>
             <div id="formProcurar">
                 <form action="buscar.php" method="get">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -66,45 +75,27 @@
 
             <div class="lista-livros">
 
+            <?php  for($cont = 1; $cont <= 6; $cont ++):  ?>
+
                 <div class="card-livro">
+                    <div class="capa">
                     <img src="assets/img/livro-css.png" alt="CSS">
+                    <span class="legenda">Lançamento</span>
+                </div>
                     <h3>CSS Grid layout: Criando Layouts Profissionais</h3>
                 </div>
 
                 <div class="card-livro">
+                <div class="capa">
                     <img src="assets/img/livro-html.png" alt="HTML e CSS">
+                    <span class="black-friday">Black Fraude</span>
+                    </div>
                     <h3>Html e CSS: Guia Prático</h3>
                 </div>
 
-                <div class="card-livro">
-                    <img src="assets/img/livro-css.png" alt="CSS">
-                    <h3>CSS Grid layout: Criando Layouts Profissionais</h3>
-                </div>
+            <?php endfor ?>
 
-                <div class="card-livro">
-                    <img src="assets/img/livro-html.png" alt="HTML e CSS">
-                    <h3>Html e CSS: Guia Prático</h3>
-                </div>
-
-                <div class="card-livro">
-                    <img src="assets/img/livro-css.png" alt="CSS">
-                    <h3>CSS Grid layout: Criando Layouts Profissionais</h3>
-                </div>
-
-                <div class="card-livro">
-                    <img src="assets/img/livro-html.png" alt="HTML e CSS">
-                    <h3>Html e CSS: Guia Prático</h3>
-                </div>
-
-                <div class="card-livro">
-                    <img src="assets/img/livro-css.png" alt="CSS">
-                    <h3>CSS Grid layout: Criando Layouts Profissionais</h3>
-                </div>
-
-                <div class="card-livro">
-                    <img src="assets/img/livro-html.png" alt="HTML e CSS">
-                    <h3>Html e CSS: Guia Prático</h3>
-                </div>
+             
 
             </div>
 
@@ -126,7 +117,7 @@
                 </ul>
             </div>
 
-            <div class="bloco rodape">
+            <div class="bloco-rodape">
                 <h2>Contatos</h2>
                 <ul>
 
@@ -137,7 +128,7 @@
                 </ul>
             </div>
 
-            <div class="bloco rodape">
+            <div class="bloco-rodape">
                 <h2>Redes Sociais</h2>
                 <ul>
 
@@ -149,7 +140,7 @@
 
         </div>
 
-        <div>
+        <div class="copyright">
             &copy; <?= date("Y") ?> -BookMeNow- Todos os direitos sao reservados
         </div>
     </footer>

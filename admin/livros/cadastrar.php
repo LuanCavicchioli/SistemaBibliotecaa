@@ -29,7 +29,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/includes/cabecario.php";
             <label for="ISBN" class="form-label">ISBN</label>
             <input type="text" name="isbn" id="isbn" class="form-control" required>
         </div>
-        <div class="col-12">
+        <div class="col-12">    
             <button type="submit" class="btn btn-primary">Cadastrar</button>
             <a href="index.php" class="btn btn-secondary">Cancelar</a>
         </div>

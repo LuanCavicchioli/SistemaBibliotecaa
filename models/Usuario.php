@@ -96,11 +96,10 @@ class Usuario
             return false;
         }
     }
-    //Excluir usuario
+   
     public function excluir($id_usuario)
     {
         try {
-            $_SESSION['sucesso'] = "Usuario excluido com sucesso ";
             $sql = "DELETE FROM {$this->table} WHERE id_usuario=:id_usuario";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);

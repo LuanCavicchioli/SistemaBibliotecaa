@@ -1,5 +1,4 @@
 <?php
-
 require_once $_SERVER['DOCUMENT_ROOT'] . "/models/Usuario.php";
 
 class UsuarioController{
@@ -25,11 +24,11 @@ class UsuarioController{
                 'senha'=>password_hash($_POST['senha'],PASSWORD_DEFAULT),   
                 'perfil'=>$_POST['perfil']
             ];
-            //var_dump($dados);
+            var_dump($dados);
 
             $this->usuarioModel->cadastrar($dados);
 
-            header('Location: index.php');
+            header('Location: inde  x.php');
             exit;
             
         }
@@ -50,8 +49,10 @@ class UsuarioController{
             
             $dados = [
                 'nome'=> $_POST['nome'],
+                'senha'=>$_POST['senha'],
+                'cpf'=>$_POST['cpf'],  
                 'email'=> $_POST['email'],
-                'senha'=>$senha,  
+                'telefone'=>$_POST['telefone'],
                 'perfil'=>$_POST['perfil']
             ];
             //var_dump($dados);

@@ -44,7 +44,7 @@
         <td><?=$aluno->telefone?></td>
         <td><?=$aluno->celular?></td>
         <td><?=$aluno->data_nascimento?></td>
-        <td>
+        <td>    
                         <a href="editar.php?id_aluno=<?=$aluno->id_aluno?>" class="btn btn-primary">Editar</a>
                         <a href="index.php?id_aluno=<?=$aluno->id_aluno?>&del" class="btn btn-danger">Excluir</a>
                     </td>
